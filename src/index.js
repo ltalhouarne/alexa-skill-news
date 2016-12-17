@@ -10,9 +10,11 @@ const handlers = {
         this.emit('GetUpliftingNews');
     },
     'GetUpliftingNews': function () {
-        this.emit('GetUpliftingNews');
+        this.emit('GetNews');
     },
     'GetNews': function () {
+        var found = false;
+
         request('https://www.reddit.com/r/upliftingnews/hot.json?sort=hot', function (error, response, body) {
             if (!error && response.statusCode == 200) {
                 var res = JSON.parse(body);
@@ -20,7 +22,6 @@ const handlers = {
                 var randomPost = Math.floor(Math.random() * (numberOfPosts));
                 var retryCount = 0;
                 var post = res.data.children[randomPost];
-                var found = false;
 
                 while(retryCount <= 10){
                     if(post.data.domain != 'self.UpliftingNews'){
