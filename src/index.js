@@ -20,9 +20,11 @@ const handlers = {
                 var randomPost = Math.floor(Math.random() * (numberOfPosts));
                 var retryCount = 0;
                 var post = res.data.children[randomPost];
+                var found = false;
 
                 while(retryCount <= 10){
                     if(post.data.domain != 'self.UpliftingNews'){
+                        found = true;
                         break;
                     } else {
                         post = res.data.children[Math.floor(Math.random() * (numberOfPosts))];
@@ -31,7 +33,11 @@ const handlers = {
             }
         });
 
-        this.emit(':tell', post.data.title + ". For more information, please visit the UpliftingNews subreddit.");
+        if(found) {
+            this.emit(':tell', post.data.title + ". For more information, please visit the Uplifting News subreddit.");
+        } else {
+            this.emit(':tell', "I could not find uplifting news for you, sorry.");
+        }
     }
 };
 
