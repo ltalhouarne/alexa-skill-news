@@ -1,0 +1,18 @@
+{
+  "name": "alexa-skill-uplifting-news",
+  "version": "1.0.0",
+  "description": "Uplifting news",
+  "main": "index.js",
+  "keywords": [
+    "alexa",
+    "skill",
+    "fact",
+    "uplifting news"
+  ],
+  "author": "Loic Talhouarne",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "alexa-sdk": "^1.0.6",
+    "request": "^2.79.0"
+  }
+}
