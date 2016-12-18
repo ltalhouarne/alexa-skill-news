@@ -3,11 +3,15 @@
 const Alexa = require('alexa-sdk');
 const request = require('request');
 
-const APP_ID = "amzn1.ask.skill.60f22f23-ea8e-4674-b9d1-3f25f5f8346f";
-
 const handlers = {
     'LaunchRequest': function () {
         this.emit('GetUpliftingNews');
+    },
+    'IntentRequest': function () {
+        this.emit('GetUpliftingNews');
+    },
+    'SessionEndedRequest': function () {
+        return;
     },
     'GetUpliftingNews': function () {
         var reference = this;
@@ -43,12 +47,18 @@ const handlers = {
                 reference.emit(':tell', "I could not find uplifting news for you, sorry.");
             }
         });
+    },
+    'Unhandled': function () {
+        this.emit(':tell', "I am sorry, but I am not sure what you asked me.");
     }
 };
 
-exports.handler = (event, context) => {
+exports.handler = (event, context) =
+>
+{
     const alexa = Alexa.handler(event, context);
-    alexa.APP_ID = APP_ID;
+    alexa.APP_ID = "amzn1.ask.skill.60f22f23-ea8e-4674-b9d1-3f25f5f8346f";
     alexa.registerHandlers(handlers);
     alexa.execute();
-};
+}
+;
