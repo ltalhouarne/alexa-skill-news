@@ -55,7 +55,7 @@ const handlers = {
 
 exports.handler = (event, context) => {
     const alexa = Alexa.handler(event, context);
-    alexa.APP_ID = "amzn1.ask.skill.60f22f23-ea8e-4674-b9d1-3f25f5f8346f";
+    alexa.APP_ID = "OMMITTED";
     alexa.registerHandlers(handlers);
     alexa.execute();
 };
